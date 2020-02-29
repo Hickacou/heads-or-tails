@@ -7,7 +7,10 @@ function displayCardOmega($this, correct) {
     setTimeout(() => {
         var n = $this.val();
         var e = $("#cardOmega");
-        if (n > 0) e.text(scientificWriting(Math.pow(2, n)));
+        if (n > 0) e.text((Math.pow(2, n) == Infinity)
+            ? "2^" + n
+            : scientificWriting(Math.pow(2, n))
+        );
         else {
             e.text("∞")
             if (correct) $this.val(0);
