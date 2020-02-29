@@ -67,3 +67,32 @@ body {
     background: #00000050;
     padding: 2px 5px;
 }
+
+#root #dev-links {
+    position: fixed;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    bottom: 5px;
+    right: 0;
+}
+#root #dev-links #dev-links-sentence {
+    font: italic 12pt "Roboto";
+}
+#root #dev-links .dev-link {
+    width: 26px;
+    height: 26px;
+    margin: 0 5px;
+    background: center center / contain;
+    transition: opacity .1s ease;
+}
+#root #dev-links .dev-link:hover {
+    opacity: .7;
+}
+#root #dev-links .dev-link#github {
+    background-image: url(../img/github.png);
+}
+#root #dev-links .dev-link#twitter {
+    background-image: url(../img/twitter.png);
+}
