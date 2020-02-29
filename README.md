@@ -1,2 +1,2 @@
-# heads-or-tails
-Heads or tails simulation for statistics.
+# pile-ou-face
+Simulateur de pile ou face.
