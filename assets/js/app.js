@@ -7,8 +7,8 @@ function displayCardOmega($this, correct) {
     setTimeout(() => {
         var n = $this.val();
         var e = $("#cardOmega");
-        if (n > 0) e.text((Math.pow(2, n) == Infinity)
-            ? "2^" + n
+        if (n > 0) e.html((Math.pow(2, n) == Infinity)
+            ? "2<sup>" + n + "</sup>"
             : scientificWriting(Math.pow(2, n))
         );
         else {
@@ -21,5 +21,5 @@ function displayCardOmega($this, correct) {
 function scientificWriting(n) {
     if (!n.toString().includes("e")) return n;
     n = n.toString().split("e");
-    return parseFloat(n[0]).toFixed(3).toString().replace(".", ",") + ".10^" + parseInt(n[1]);
+    return parseFloat(n[0]).toFixed(3).toString().replace(".", ",") + ".10<sup>" + parseInt(n[1]) + "</sup>";
 }
