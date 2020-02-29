@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+}
+#root .app-section {
+    box-sizing: border-box;
+    position: fixed;
+    display: none;
+    width: 95%;
+    height: 90%;
+    top: 5%;
+    left: 2.5%;
+    border: 1px solid #000;
+}
+
+#root .app-section.displayed {
+    display: block;
+    animation: fadeIn .5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+#root .app-section .app-section-title {
+    font: 30pt "Teko";
+    background-color: #000;
+    display: table;
+    color: #fff;
+    padding: 0 20px;
+}
+
+#root .app-section .section-corner-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#root .app-section .section-corner-button {
+    font: 20pt "Teko";
+    border: 3px solid #000;
+    border-bottom-width: 2px;
+    background: transparent;
+    outline: 0;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: .1s ease;
+}
+
+#root .app-section .section-corner-button:hover {
+    background: #000;
+    color: #fff;
+}
