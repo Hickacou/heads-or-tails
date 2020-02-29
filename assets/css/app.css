@@ -53,3 +53,17 @@ body {
     background: #000;
     color: #fff;
 }
+
+#root #app-title {
+    font: italic 20pt "Teko";
+    text-align: center;
+}
+
+#root #app-version {
+    position: fixed;
+    bottom: 0;
+    font: 10pt "Roboto Mono";
+    color: #fff;
+    background: #00000050;
+    padding: 2px 5px;
+}

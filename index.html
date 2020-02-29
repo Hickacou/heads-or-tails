@@ -9,14 +9,17 @@
     <link rel="stylesheet" href="assets/css/settings.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="assets/js/app.js"></script>
     <script src="assets/js/settings.js"></script>
 </head>
 <body>
     <div id="root">
+        <div id="app-title" class="external-elemnt">Simulateur de pile ou face.</div>
+        <div id="app-version" class="external-element"></div>
         <div id="settings" class="app-section displayed">
             <div class="app-section-title">Paramètres de la simulation</div>
             <div class="parameter-line" id="n">
-                Nombre n de lancers : <input type="number" value="0" min="0" /> <i>(Remplir 0 pour ∞) — Nombre de cas possibles : <span id="cardOmega">∞</span></i> 
+                Nombre n de lancers : <input type="number" value="0" min="0" /> <i>(Remplir 0 pour ∞) — Cardinal de l'ensemble des observables : <span id="cardOmega">∞</span></i> 
             </div>
             <div class="parameter-line" id="interval">
                 Interval de temps entre chaque lancer : <input type="number" value="50" min="0" />ms <i>(Remplir 0 pour une simulation quasi-immédiate)</i> 
