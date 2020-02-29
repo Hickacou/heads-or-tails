@@ -19,7 +19,13 @@ function displayCardOmega($this, correct) {
 }
 
 function scientificWriting(n) {
-    if (!n.toString().includes("e")) return n;
-    n = n.toString().split("e");
-    return parseFloat(n[0]).toFixed(3).toString().replace(".", ",") + ".10<sup>" + parseInt(n[1]) + "</sup>";
+    if (n.toString().includes("e")) {
+        n = n.toString().split("e");
+        return parseFloat(n[0]).toFixed(3).toString().replace(".", ",") + ".10<sup>" + parseInt(n[1]) + "</sup>";
+    } else if (n.toString().length > 5) {
+        n = n.toString();
+        return (n / Math.pow(10, n.length - 1)).toFixed(3).replace(".", ",") + ".10<sup>" + (n.length - 1) + "</sup>";
+    } else {
+        return n;
+    }
 }
