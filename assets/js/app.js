@@ -8,10 +8,11 @@ const app = new Vue({
     computed: {
         outcomes: function () {
             const n = this.simulationSettings.throws;
+            if (n == 0) return "∞";
             var pow = Math.pow(2, n);
             if (pow == Infinity) return `2<sup>${n}</sup>`;
             pow = pow.toString();
-            if (pow.length < 7) return n;
+            if (pow.length < 7) return pow;
             if (pow.includes("e")) {
                 pow = pow.split("e");
                 console.log(pow);
