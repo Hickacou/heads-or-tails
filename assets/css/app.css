@@ -1,6 +1,9 @@
 body {
     margin: 0;
 }
+*[title] {
+    cursor: help;
+}
 #root .app-section {
     box-sizing: border-box;
     position: fixed;

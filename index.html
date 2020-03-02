@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Teko:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/settings.css">
+    <link rel="stylesheet" href="assets/css/simulation.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script src="assets/js/settings.js"></script>
+    <script src="assets/js/simulation.js"></script>
 </head>
+
 <body>
     <div id="root">
         <div id="app-title" class="external-elemnt">Simulateur de pile ou face.</div>
@@ -19,24 +23,64 @@
         <div id="dev-links" class="external-elem">
             <div id="dev-links-sentence">Retrouvez moi sur</div>
             <a class="dev-link" id="github" title="GitHub" href="https://github.com/Hickacou" target="_blank"></a>
-            <a class="dev-link" id="twitter" title="Twitter" href="https://twitter.com/puddingmangue" target="_blank"></a>
+            <a class="dev-link" id="twitter" title="Twitter" href="https://twitter.com/puddingmangue"
+                target="_blank"></a>
         </div>
         <div id="settings" class="app-section displayed">
             <div class="app-section-title">Paramètres de la simulation</div>
             <div class="parameter-line" id="n">
-                Nombre n de lancers : <input type="number" value="0" min="0" /> <i>(Remplir 0 pour ∞) — Cardinal de l'ensemble des observables : <span id="cardOmega">∞</span></i> 
+                Nombre n de lancers : <input type="number" value="0" min="0" /> <i>(Remplir 0 pour ∞) — Cardinal de
+                    l'ensemble des observables : <span id="cardOmega">∞</span></i>
             </div>
-            <div class="parameter-line" id="interval">
-                Interval de temps entre chaque lancer : <input type="number" value="50" min="0" />ms <i>(Remplir 0 pour une simulation quasi-immédiate)</i> 
+            <div class="parameter-line" id="delta">
+                Interval de temps entre chaque lancer : <input type="number" value="50" min="0" />ms <i>(Remplir 0 pour
+                    une simulation quasi-immédiate)</i>
             </div>
             <div class="section-corner-container">
                 <button id="start-simulation" class="section-corner-button">Démarrer la simulation</button>
             </div>
         </div>
-        <div id="simulator" class="app-section">
-
+        <div id="simulation" class="app-section">
+            <div class="app-section-title">Simulation</div>
+            <div id="simulation-legend">
+                <div class="simulation-legend-line">
+                    <div class="simulation-legend-color" id="P"></div> : Pile
+                </div>
+                <div class="simulation-legend-line">
+                    <div class="simulation-legend-color" id="F"></div> : Face
+                </div>
+            </div>
+            <div id="simulation-stat-graphs">
+                <div class="simulation-stat-graph" id="P">
+                    <b>Piles : 50%</b>
+                </div>
+                <div class="simulation-stat-graph" id="F">
+                    <b>Faces : 50%</b>
+                </div>
+            </div>
+            <div id="simulation-color-timeline"></div>
+            <div id="simulation-infos">
+                <div class="simulation-info-block">
+                    <div class="simulation-info" id="shots">Pièces lancées : <b>0</b></div>
+                    <div class="simulation-info" id="remaining">Coups restans : <b>∞</b></div>
+                </div>
+                <div class="simulation-info-block">
+                    <div class="simulation-info" id="Pcount">Piles : <b>0</b></div>
+                    <div class="simulation-info" id="Fcount">Faces : <b>0</b></div>
+                </div>
+                <div class="simulation-info-block">
+                    <div class="simulation-info" id="diff">Différence : <b>0</b></div>
+                    <div class="simulation-info" id="FF" title="Nombre de fois qu'il y a eu autant de piles que de faces">50-50<sup>*</sup> : <b>0</b></div>
+                </div>
+            </div>
+            <textarea id="coinsString" cols="50" rows="10"></textarea>
+            <div class="section-corner-container">
+                <button id="pause-simulation" class="section-corner-button">Pause</button>
+                <button id="stop-simulation" class="section-corner-button">Arréter</button>
+            </div>
         </div>
         <div id="results" class="app-section"></div>
     </div>
 </body>
+
 </html>
