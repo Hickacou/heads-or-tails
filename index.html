@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulateur de Pile ou face</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="assets/js/components.js" defer></script>
+    <script src="assets/js/app.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <app-section title="Paramètres" id="settings">
+            <div>Nombre de lancers : <input type="number" v-model.number="simulationSettings.throws" :value="simulationSettings.throws"></div>
+            <div>Cardinal de l'ensemble des observables : <b v-html="outcomes"></b></div>
+        </app-section>
+    </div>
+</body>
+
+</html>
