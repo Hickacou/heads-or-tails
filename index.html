@@ -39,6 +39,10 @@
             <button class="section-corner-button" id="startSimulation" @click="initSimulation($event)">Démarrer</button>
         </app-section>
         <app-section title="Simulation" id="simulation" v-if="section == 'simulation'">
+            <div id="simulation-legend">
+                <div><span class="legend-color-block" v-bind:style="{background: simulationSettings.tailsColor}"></span>:&nbsp;<b> Piles</b></div>
+                <div><span class="legend-color-block" v-bind:style="{background: simulationSettings.headsColor}"></span>:&nbsp;<b>Faces</b></div>
+            </div>
             <div id="simulation-top-info">
                 <div id="timer"></div>
                 <div id="coinsCount">
@@ -56,10 +60,11 @@
                 </div>
                 <div class="stat-block" id="otherStats">
                     <div>Différence : <b>{{ Math.abs(simulationData.tails.count - simulationData.heads.count) }}</b></div>
-                    <div title="Nombre de fois qu'il y a eu autant de piles que de faces">50-50 <sup>*</sup>: <b>{{ simulationData.heads.count }}</b></div>
+                    <div title="Nombre de fois qu'il y a eu autant de piles que de faces">50-50 <sup>*</sup>: <b>{{ simulationData.fiftyFifty }}</b></div>
                 </div>
             </div>
             <textarea v-bind:value="simulationData.historyString" id="simulation-textarea"></textarea>
+            <button class="section-corner-button" @click="stopSimulation()">Arrêter</button>
         </app-section>
     </div>
 </body>

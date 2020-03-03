@@ -1,3 +1,16 @@
+#simulation #simulation-legend div {
+    display: flex;
+    flex-direction: row;
+    font: 12pt "Roboto";
+    margin: 10px 5px;
+}
+#simulation #simulation-legend div span {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    margin-right: 3px;
+}
+
 #simulation #simulation-top-info {
     position: absolute;
     background: #eee;

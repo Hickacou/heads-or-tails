@@ -69,7 +69,6 @@ const app = new Vue({
             if (++this.simulationData[coin].streak > this.simulationData[coin].highestStreak) {
                 this.simulationData[coin].highestStreak = this.simulationData[coin].streak;
             }
-            console.log(this.simulationData[coin].count + "/" + this.simulationData.thrownCoins);
             this.simulationData[(coin == "heads") ? "tails" : "heads"].percentage = (this.simulationData[(coin == "heads") ? "tails" : "heads"].count / this.simulationData.thrownCoins) * 100;
             this.simulationData[(coin == "heads") ? "heads" : "tails"].percentage = (this.simulationData[(coin == "heads") ? "heads" : "tails"].count / this.simulationData.thrownCoins) * 100;
             if (this.simulationData["heads"].count == this.simulationData["tails"].count) {
