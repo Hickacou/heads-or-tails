@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+}
+
+*[title] {
+    cursor: help;
+}
+
+.app-section {
+    box-sizing: border-box;
+    position: fixed;
+    top: 5%;
+    left: 2.5%;
+    width: 95%;
+    height: 90%;
+    border: 1px solid #000;
+    padding-top: 120px;
+}
+.app-section::before,
+.app-section::after {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    transform: rotate(-45deg);
+    background: #fff;
+}
+.app-section::before {
+    top: -5px;
+    left: -20px;
+}
+.app-section::after {
+    bottom: -5px;
+    right: -20px;
+}
+.app-section .app-section-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0 20px;
+    font: 50pt "Teko";
+    color: #fff;
+    background: #000;
+
+}
+
+.app-section .section-corner-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 15px;
+    font: 30pt "Teko";
+    color: #fff;
+    background: #000;
+    border: none;
+    cursor: pointer;
+}

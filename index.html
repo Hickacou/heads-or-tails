@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulateur de Pile ou face</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Teko:700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/app.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script src="assets/js/components.js" defer></script>
     <script src="assets/js/app.js" defer></script>
@@ -14,8 +17,24 @@
 <body>
     <div id="app">
         <app-section title="Paramètres" id="settings">
-            <div>Nombre de lancers : <input type="number" v-model.number="simulationSettings.throws" :value="simulationSettings.throws"></div>
-            <div>Cardinal de l'ensemble des observables : <b v-html="outcomes"></b></div>
+            <div class="settings-block" id="throws">
+                <div>Nombre de lancers : <input type="number" v-model.number="simulationSettings.throws"
+                        :value="simulationSettings.throws"></div>
+                <div>Cardinal de l'ensemble des observables : <b v-html="outcomes"></b></div>
+            </div>
+            <div class="settings-block" id="interval">
+                <div>Interval de temps entre chaque lancer (ms) : <input type="number"
+                        v-model.number="simulationSettings.interval" :value="simulationSettings.throws"></div>
+                <div
+                    title="La durée réelle varie en fonction de l'ordinateur. Elle est souvent bien plus élevée que la durée minimum.">
+                    Durée minimum de la simulation<sup>*</sup> : <b v-html="minDuration"></b></div>
+            </div>
+            <div class="settings-block" id="color">
+                <div>Couleur des Piles : <input type="color" v-model="simulationSettings.tailsColor" /></div>
+                <div>Couleur des Faces : <input type="color" v-model="simulationSettings.headsColor" /></div>
+            </div>
+
+            <button class="section-corner-button" id="startSimulation" @click="initSimulation($event)">Lancer</button>
         </app-section>
     </div>
 </body>
