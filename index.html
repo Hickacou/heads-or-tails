@@ -31,6 +31,15 @@
                     title="La durée réelle varie en fonction de l'ordinateur. Elle est souvent bien plus élevée que la durée minimum.">
                     Durée minimum de la simulation<sup>*</sup> : <b v-html="minDuration"></b></div>
             </div>
+            <div class="settings-block" id="displays">
+                <h1>Informations à afficher durant la simulation</h1>
+                <i>L'impact des différents affichages sur la vitesse de la simulation est indiqué entre parenthèses.</i>
+                <div>Histogramme <i>(Moyen)</i> : <input type="checkbox" v-model="displayedInfo.histogram"></div>
+                <div>Historique textuel <i>(Haut)</i> : <input type="checkbox" v-model="displayedInfo.stringHistory"></div>
+                <div>Historique coloré <i>(Haut)</i> : <input type="checkbox" v-model="displayedInfo.colorHistory"></div>
+                <div>Statistiques principales <i>(Faible)</i> : <input type="checkbox" v-model="displayedInfo.mainStats"></div>
+                <div>Statistiques secondaires <i>(Faible)</i> : <input type="checkbox" v-model="displayedInfo.streaks"></div>
+            </div>
             <div class="settings-block" id="color">
                 <div>Couleur des Piles : <input type="color" v-model="simulationSettings.tailsColor" /></div>
                 <div>Couleur des Faces : <input type="color" v-model="simulationSettings.headsColor" /></div>
@@ -40,7 +49,7 @@
         </app-section>
         <app-section title="Simulation" id="simulation" v-if="section == 'simulation'">
             <div id="simulation-legend">
-                <div><span class="legend-color-block" v-bind:style="{background: simulationSettings.tailsColor}"></span>:&nbsp;<b> Piles</b></div>
+                <div><span class="legend-color-block" v-bind:style="{background: simulationSettings.tailsColor}"></span>:&nbsp;<b>Piles</b></div>
                 <div><span class="legend-color-block" v-bind:style="{background: simulationSettings.headsColor}"></span>:&nbsp;<b>Faces</b></div>
             </div>
             <div id="simulation-top-info">
@@ -52,8 +61,8 @@
                     </div>
                 </div>
             </div>
-            <histogram id="simulation-histogram" v-bind:data="this"></histogram>
-            <div id="simulation-stats">
+            <histogram id="simulation-histogram" v-bind:data="this" v-if="displayedInfo.histogram"></histogram>
+            <div id="simulation-stats" v-if="displayedInfo.mainStats">
                 <div class="stat-block" id="basicCounts">
                     <div>Piles : <b>{{ simulationData.tails.count }}</b></div>
                     <div>Faces : <b>{{ simulationData.heads.count }}</b></div>
@@ -63,7 +72,18 @@
                     <div title="Nombre de fois qu'il y a eu autant de piles que de faces">50-50 <sup>*</sup>: <b>{{ simulationData.fiftyFifty }}</b></div>
                 </div>
             </div>
-            <textarea v-bind:value="simulationData.historyString" id="simulation-textarea"></textarea>
+            <div id="simulation-streaks" v-if="displayedInfo.streaks">
+                <div class="stat-block" id="streaks">
+                    <div>Piles de suite : <b>{{ simulationData.tails.streak }}</b></div>
+                    <div>Faces de suite : <b>{{ simulationData.heads.streak }}</b></div>
+                </div>
+                <div class="stat-block" id="highestStreaks">
+                    <div>Plus longue série de piles : <b>{{ simulationData.tails.highestStreak }}</b></div>
+                    <div>Plus longue série de faces : <b>{{ simulationData.heads.highestStreak }}</b></div>
+                </div>
+            </div>
+            <textarea v-bind:value="simulationData.historyString" id="simulation-textarea" v-if="displayedInfo.stringHistory"></textarea>
+            <div id="simulation-color-history" v-if="displayedInfo.colorHistory"></div>
             <button class="section-corner-button" @click="stopSimulation()">Arrêter</button>
         </app-section>
     </div>

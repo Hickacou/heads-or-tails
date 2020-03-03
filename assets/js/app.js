@@ -7,19 +7,26 @@ const app = new Vue({
             tailsColor: "#FF0000",
             headsColor: "#0000FF"
         },
+        displayedInfo: {
+            histogram: true,
+            stringHistory: true,
+            mainStats: true,
+            streaks: true,
+            colorHistory: true
+        },
         simulationData: {
             thrownCoins: 0,
             historyString: "",
             heads: {
                 count: 0,
                 streak: 0,
-                hightestStreak: 0,
+                highestStreak: 0,
                 percentage: 0,
             },
             tails: {
                 count: 0,
                 streak: 0,
-                hightestStreak: 0,
+                highestStreak: 0,
                 percentage: 0,
             },
             fiftyFifty: 0
@@ -74,17 +81,25 @@ const app = new Vue({
             if (this.simulationData["heads"].count == this.simulationData["tails"].count) {
                 this.simulationData.fiftyFifty++;
             }
-            //Je dois vite boucler et j'ai pas réussi à régler les heights avec v-bind.
-            this.$el.querySelector("#simulation-textarea").scrollTop = this.$el.querySelector("#simulation-textarea").scrollHeight; 
+            //Je dois vite boucler et j'ai pas réussi à régler tout ça avec Vue. C'est prévu pour plus tard.
             this.$el.querySelector("#simulation-histogram .tails").style.height = this.simulationData.tails.percentage + "%";
             this.$el.querySelector("#simulation-histogram .tails").style.background = this.simulationSettings.tailsColor;
             this.$el.querySelector("#simulation-histogram .heads").style.height = this.simulationData.heads.percentage + "%";
             this.$el.querySelector("#simulation-histogram .heads").style.background = this.simulationSettings.headsColor;
+            this.$el.querySelector("#simulation-color-history").innerHTML += `<div id="s${this.simulationData.thrownCoins}" style="background-color: ${this.simulationSettings[coin + "Color"]};"></div>`;
+            this.$el.querySelector("#simulation-textarea").scrollTop = this.$el.querySelector("#simulation-textarea").scrollHeight;
+            this.$el.querySelector("#simulation-color-history").scrollTop = this.$el.querySelector("#simulation-color-history").scrollHeight;
+            if (this.$el.querySelectorAll("#simulation-color-history div").length > 196) {
+                for (let i in this.$el.querySelectorAll("#simulation-color-history div")) {
+                    if (i == 14) break;
+                    this.$el.querySelectorAll("#simulation-color-history div")[i].remove();
+                }
+            }
             if (this.simulationData.thrownCoins == this.simulationSettings.throws) {
                 this.stopSimulation();
             }
         },
-        stopSimulation: function() {
+        stopSimulation: function () {
             clearInterval(this.simulationInterval);
         }
     }

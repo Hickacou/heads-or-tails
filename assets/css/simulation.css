@@ -69,7 +69,7 @@
     width: 250px;
     padding: 0 10px;
 }
-#simulation #simulation-stats .stat-block div {
+.stat-block div {
     font: 8pt "Roboto Mono";
 }
 #simulation #simulation-textarea {
@@ -82,4 +82,43 @@
     height: 350px;
     width: 250px;
     overflow-y: scroll;
+}
+
+#simulation #simulation-color-history {
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    left: 750px;
+    width: 352px;
+    height: 350px;
+    border: 1px solid #eee;
+    line-height:0;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+#simulation #simulation-color-history::-webkit-scrollbar {
+    width: 0px;
+}
+#simulation #simulation-color-history > div {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    background-color: red;
+    display: inline-block;
+}
+
+#simulation-streaks {
+    box-sizing: border-box;
+    position: absolute;
+    width: 352px;
+    height: 50px;
+    left: 750px;
+    bottom: 350px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #eee;
+    padding: 10px;
 }
