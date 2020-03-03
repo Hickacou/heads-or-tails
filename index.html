@@ -8,15 +8,17 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono|Teko:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/settings.css">
+    <link rel="stylesheet" href="assets/css/simulation.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="assets/js/components.js" defer></script>
     <script src="assets/js/app.js" defer></script>
 </head>
 
 <body>
     <div id="app">
-        <app-section title="Paramètres" id="settings">
+        <app-section title="Paramètres" id="settings" v-if="section == 'settings'">
             <div class="settings-block" id="throws">
                 <div>Nombre de lancers : <input type="number" v-model.number="simulationSettings.throws"
                         :value="simulationSettings.throws"></div>
@@ -34,7 +36,30 @@
                 <div>Couleur des Faces : <input type="color" v-model="simulationSettings.headsColor" /></div>
             </div>
 
-            <button class="section-corner-button" id="startSimulation" @click="initSimulation($event)">Lancer</button>
+            <button class="section-corner-button" id="startSimulation" @click="initSimulation($event)">Démarrer</button>
+        </app-section>
+        <app-section title="Simulation" id="simulation" v-if="section == 'simulation'">
+            <div id="simulation-top-info">
+                <div id="timer"></div>
+                <div id="coinsCount">
+                    <div id="coinsThrown"> Lancées : <b>{{ simulationData.thrownCoins }}</b></div>
+                    |<div id="coinsLeft"> Restantes :
+                        <b>{{ (simulationSettings.throws == 0) ? "∞" : simulationSettings.throws - simulationData.thrownCoins }}</b>
+                    </div>
+                </div>
+            </div>
+            <histogram id="simulation-histogram" v-bind:data="this"></histogram>
+            <div id="simulation-stats">
+                <div class="stat-block" id="basicCounts">
+                    <div>Piles : <b>{{ simulationData.tails.count }}</b></div>
+                    <div>Faces : <b>{{ simulationData.heads.count }}</b></div>
+                </div>
+                <div class="stat-block" id="otherStats">
+                    <div>Différence : <b>{{ Math.abs(simulationData.tails.count - simulationData.heads.count) }}</b></div>
+                    <div title="Nombre de fois qu'il y a eu autant de piles que de faces">50-50 <sup>*</sup>: <b>{{ simulationData.heads.count }}</b></div>
+                </div>
+            </div>
+            <textarea v-bind:value="simulationData.historyString" id="simulation-textarea"></textarea>
         </app-section>
     </div>
 </body>

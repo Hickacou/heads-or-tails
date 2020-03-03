@@ -55,4 +55,5 @@ body {
     background: #000;
     border: none;
     cursor: pointer;
+    outline: 0;
 }

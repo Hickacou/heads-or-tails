@@ -1,0 +1,7 @@
+.app-section#settings .settings-block {
+    margin: 20px 10px;
+}
+.app-section#settings .settings-block div {
+    font: 14pt "Roboto";
+    display: table;
+}
